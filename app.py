@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -45,7 +45,7 @@ class Workout(db.Model):
 
 @app.route("/")
 def home():
-    return "Workout Tracker è vivo!"
+    return render_template("index.html")
 
 
 @app.route("/api/workouts", methods=["GET"])

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Tracker</title>
+  </head>
+  <body>
+    <button id="corsa-btn">Corsa</button>
+    <button id="palestra-btn">Palestra</button>
+    <button id="profilo-btn">Profilo</button>
+    <div id="profilo">
+      <h1>Profilo</h1>
+      <p>Welcome to your profile!</p>
+    </div>
+    <h1>Workout Tracker</h1>
+    <p id="welcome-message">Welcome back Marco!</p>
+    <div id="corsa-content">
+      <h1>Corsa</h1>
+      <p>Welcome to the Workout Tracker!</p>
+    </div>
+    <div id="palestra-content">
+      <h1>Palestra</h1>
+      <p>Welcome to the Workout Tracker!</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
