@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
     <title>Workout Tracker</title>
   </head>
   <body>
-    <button id="corsa-btn">Corsa</button>
-    <button id="palestra-btn">Palestra</button>
-    <button id="profilo-btn">Profilo</button>
+    <button id="corsa-btn" class="corsa-btn">Corsa</button>
+    <button id="palestra-btn" class="palestra-btn">Palestra</button>
+    <button id="profilo-btn" class="profilo-btn">Profilo</button>
     <div id="profilo">
       <h1>Profilo</h1>
       <p>Welcome to your profile!</p>

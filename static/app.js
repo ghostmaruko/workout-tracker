@@ -6,22 +6,24 @@ const corsaBtn = document.getElementById("corsa-btn");
 const palestraBtn = document.getElementById("palestra-btn");
 const profiloBtn = document.getElementById("profilo-btn");
 
-corsaBtn.addEventListener("click", () => {
-  document.getElementById("corsa-content").style.display = "block";
-  document.getElementById("palestra-content").style.display = "none";
-  document.getElementById("profilo").style.display = "none";
-});
+const buttons = [
+  { button: corsaBtn, contentId: document.getElementById("corsa-content") },
+  {
+    button: palestraBtn,
+    contentId: document.getElementById("palestra-content"),
+  },
+  { button: profiloBtn, contentId: document.getElementById("profilo") },
+];
 
-palestraBtn.addEventListener("click", () => {
-  document.getElementById("corsa-content").style.display = "none";
-  document.getElementById("palestra-content").style.display = "block";
-  document.getElementById("profilo").style.display = "none";
-});
-
-profiloBtn.addEventListener("click", () => {
-  document.getElementById("corsa-content").style.display = "none";
-  document.getElementById("palestra-content").style.display = "none";
-  document.getElementById("profilo").style.display = "block";
+buttons.forEach((btn) => {
+  btn.button.addEventListener("click", () => {
+    buttons.forEach((b) => {
+      b.contentId.style.display = "none";
+      b.button.classList.remove("active");
+    });
+    btn.contentId.style.display = "block";
+    btn.button.classList.add("active");
+  });
 });
 
 // Funzione per caricare gli allenamenti dal server
@@ -49,9 +51,9 @@ async function mostraWorkouts(data) {
   // Mostra gli allenamenti di corsa
   const htmlCorsa = allenamentiCorsa
     .map(
-      (w) => `
+      (w) => `<div class="workout-card">
   <p>${w.data} - ${w.tipo_corsa} - ${w.distanza_km} km</p>
-`,
+</div>`,
     )
     .join("");
   corsaContainer.innerHTML = htmlCorsa;
@@ -59,9 +61,9 @@ async function mostraWorkouts(data) {
   // Mostra gli allenamenti di palestra
   const htmlPalestra = allenamentiPalestra
     .map(
-      (w) => `
+      (w) => `<div class="workout-card">
   <p>${w.data} - ${w.esercizio} - ${w.serie} serie - ${w.ripetizioni} rep - ${w.peso} kg</p>
-`,
+</div>`,
     )
     .join("");
   palestraContainer.innerHTML = htmlPalestra;

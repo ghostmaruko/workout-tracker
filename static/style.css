@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+button {
+  background-color: #7bb8fa;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #5a9bd4;
+}
+button:active {
+  background-color: #4c5caf;
+}
+button.corsa-btn.active {
+  background-color: #4c5caf;
+}
+button.palestra-btn.active {
+  background-color: #4c5caf;
+}
+button.profilo-btn.active {
+  background-color: #4c5caf;
+}
+.workout-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
