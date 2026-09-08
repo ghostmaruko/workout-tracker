@@ -1,11 +1,12 @@
 # Workout Tracker
 
-API per tracciare allenamenti di corsa e palestra, costruita come progetto di apprendimento per QA Automation Engineering. In preparazione per la Maratona di Berlino 2026.
+API e interfaccia web per tracciare allenamenti di corsa e palestra, costruita come progetto di apprendimento per QA Automation Engineering. In preparazione per la Maratona di Berlino 2026.
 
 ## Stack
 
 - **Backend**: Flask (Python)
 - **Database**: SQLite + SQLAlchemy
+- **Frontend**: HTML, CSS, JavaScript vanilla (nessun framework)
 - **Test**: pytest, con test client di Flask (database in memoria, isolato dai dati reali)
 
 ## Modello dati
@@ -20,6 +21,15 @@ Un allenamento può essere di due categorie:
 
 - `GET /api/workouts` — restituisce tutti gli allenamenti
 - `POST /api/workouts` — crea un nuovo allenamento (valida i campi obbligatori in base alla categoria)
+
+## Interfaccia web
+
+La pagina principale (`/`) mostra tre sezioni selezionabili tramite bottoni:
+- **Corsa** — elenco degli allenamenti di corsa, più recenti in cima, mostrati come card
+- **Palestra** — elenco degli allenamenti di palestra, stesso formato
+- **Profilo** — sezione base, in evoluzione
+
+I dati vengono caricati dinamicamente dall'API (`fetch`) al caricamento della pagina, filtrati per categoria e ordinati per data.
 
 ## Setup locale
 
@@ -46,7 +56,8 @@ I test usano un database SQLite in memoria, separato da `workouts.db` — nessun
 - [x] Persistenza SQLite
 - [x] Repository Git + `.gitignore`
 - [x] Test API con pytest (test client, database isolato)
-- [ ] Frontend HTML con form (necessario per i test UI)
+- [x] Frontend con interfaccia a sezioni, dati dinamici via fetch
+- [x] Stile CSS base e componenti (card, stato attivo)
 - [ ] Test UI con Playwright
 - [ ] CI/CD con GitHub Actions
 - [ ] Deploy su Raspberry Pi
