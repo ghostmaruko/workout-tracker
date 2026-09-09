@@ -7,7 +7,7 @@ API e interfaccia web per tracciare allenamenti di corsa e palestra, costruita c
 - **Backend**: Flask (Python)
 - **Database**: SQLite + SQLAlchemy
 - **Frontend**: HTML, CSS, JavaScript vanilla (nessun framework)
-- **Test**: pytest, con test client di Flask (database in memoria, isolato dai dati reali)
+- **Test**: pytest (API, con test client di Flask) + Playwright (UI, browser reale)
 
 ## Modello dati
 
@@ -37,6 +37,7 @@ I dati vengono caricati dinamicamente dall'API (`fetch`) al caricamento della pa
 python -m venv venv
 venv\Scripts\activate       # Windows
 pip install -r requirements.txt
+playwright install         # scarica i browser usati dai test UI
 py app.py
 \`\`\`
 
@@ -44,11 +45,24 @@ Il server parte su `http://127.0.0.1:5000`.
 
 ## Eseguire i test
 
+**Test API** (nessun server acceso necessario, usano un database SQLite in memoria isolato da `workouts.db`):
+
+\`\`\`bash
+pytest tests/test_api.py
+\`\`\`
+
+**Test UI** (richiedono il server Flask acceso in un altro terminale, aprono un browser reale via Playwright):
+
+\`\`\`bash
+py app.py                   # in un terminale separato
+pytest tests/test_ui.py     # in questo terminale
+\`\`\`
+
+Per eseguire tutti i test insieme (con il server acceso):
+
 \`\`\`bash
 pytest
 \`\`\`
-
-I test usano un database SQLite in memoria, separato da `workouts.db` — nessun dato reale viene toccato.
 
 ## Stato del progetto / prossimi step
 
@@ -58,7 +72,7 @@ I test usano un database SQLite in memoria, separato da `workouts.db` — nessun
 - [x] Test API con pytest (test client, database isolato)
 - [x] Frontend con interfaccia a sezioni, dati dinamici via fetch
 - [x] Stile CSS base e componenti (card, stato attivo)
-- [ ] Test UI con Playwright
+- [x] Test UI con Playwright
 - [ ] CI/CD con GitHub Actions
 - [ ] Deploy su Raspberry Pi
 - [ ] Integrazione Strava (fase avanzata, con mocking delle chiamate esterne nei test)
