@@ -22,3 +22,14 @@ jobs:
 
       - name: Esegui test API
         run: pytest tests/test_api.py
+
+      - name: Installa Playwright
+        run: pip install playwright && playwright install
+
+      - name: Avvia Flask in background
+        run: |
+          python app.py &
+          sleep 5  # Attendi che il server sia pronto
+
+      - name: Esegui test UI
+        run: pytest tests/test_ui.py
