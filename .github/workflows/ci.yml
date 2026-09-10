@@ -24,7 +24,7 @@ jobs:
         run: pytest tests/test_api.py
 
       - name: Installa Playwright
-        run: pip install playwright && playwright install
+        run: pip install playwright && playwright install --with-deps
 
       - name: Avvia Flask in background
         run: |
