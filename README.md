@@ -1,5 +1,7 @@
 # Workout Tracker
 
+![CI](https://github.com/ghostmaruko/workout-tracker/actions/workflows/ci.yml/badge.svg)
+
 API e interfaccia web per tracciare allenamenti di corsa e palestra, costruita come progetto di apprendimento per QA Automation Engineering. In preparazione per la Maratona di Berlino 2026.
 
 ## Stack
@@ -8,6 +10,7 @@ API e interfaccia web per tracciare allenamenti di corsa e palestra, costruita c
 - **Database**: SQLite + SQLAlchemy
 - **Frontend**: HTML, CSS, JavaScript vanilla (nessun framework)
 - **Test**: pytest (API, con test client di Flask) + Playwright (UI, browser reale)
+- **CI/CD**: GitHub Actions
 
 ## Modello dati
 
@@ -64,6 +67,17 @@ Per eseguire tutti i test insieme (con il server acceso):
 pytest
 \`\`\`
 
+## CI/CD
+
+Ad ogni push sul branch `main`, GitHub Actions esegue automaticamente:
+1. Setup dell'ambiente Python e installazione dipendenze
+2. Test API (`test_api.py`)
+3. Installazione dei browser Playwright (con dipendenze di sistema)
+4. Avvio del server Flask in background
+5. Test UI (`test_ui.py`)
+
+Configurazione in `.github/workflows/ci.yml`.
+
 ## Stato del progetto / prossimi step
 
 - [x] API Flask con validazione per categoria
@@ -73,6 +87,6 @@ pytest
 - [x] Frontend con interfaccia a sezioni, dati dinamici via fetch
 - [x] Stile CSS base e componenti (card, stato attivo)
 - [x] Test UI con Playwright
-- [ ] CI/CD con GitHub Actions
+- [x] CI/CD con GitHub Actions
 - [ ] Deploy su Raspberry Pi
 - [ ] Integrazione Strava (fase avanzata, con mocking delle chiamate esterne nei test)
