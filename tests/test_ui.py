@@ -7,6 +7,7 @@ def test_workout_tracker(page):
 	expect(page).to_have_title("Workout Tracker")
 
 def test_corsa_mostra_allenamenti(page):
+	page.request.post(test_url + "/api/workouts", data={"categoria": "corsa", "tipo_corsa": "tempo_run", "distanza_km": 12, "tempo_minuti": 59,})
 	page.goto(test_url)
 	page.click("#corsa-btn")
 	expect(page.locator("#corsa-content")).to_be_visible()
@@ -15,6 +16,8 @@ def test_corsa_mostra_allenamenti(page):
 
 
 def test_palestra_mostra_allenamenti(page):
+    page.request.post(test_url + "/api/workouts", data={"categoria": "palestra", "esercizio": "push-up", "serie": 3,
+			"ripetizioni": 15, "peso": 0})
     page.goto(test_url)
     page.click("#palestra-btn")
     expect(page.locator("#palestra-content")).to_be_visible()

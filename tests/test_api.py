@@ -45,3 +45,24 @@ def test_aggiungi_workout_categoria_non_valida(client):
     response = client.post("/api/workouts", json=payload)
 
     assert response.status_code == 400
+
+def test_aggiungi_workout_palestra_valido(client):
+    payload = {
+        "categoria": "palestra",
+        "esercizio": "push-up",
+        "serie": 3,
+        "ripetizioni": 15,
+        "peso": 0,
+        "data": "2026-08-20"
+    }
+
+    response = client.post("/api/workouts", json=payload)
+    body = response.get_json()
+
+    assert response.status_code == 201
+    assert body["categoria"] == "palestra"
+    assert body["esercizio"] == "push-up"
+    assert body["serie"] == 3
+    assert body["ripetizioni"] == 15
+    assert body["peso"] == 0
+
